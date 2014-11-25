@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using EventbriteNET.Entities;
 using System.Xml;
 using System.IO;
@@ -44,7 +45,7 @@ namespace EventbriteNET.Xml
             }
             if (toReturn.Type == TicketType.FixedPrice)
             {
-                toReturn.Price = Decimal.Parse(doc.GetElementsByTagName("price")[0].InnerText);
+                toReturn.Price = Decimal.Parse(doc.GetElementsByTagName("price")[0].InnerText, NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands, CultureInfo.InvariantCulture);
             }
 
 

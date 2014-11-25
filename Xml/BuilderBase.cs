@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Xml;
 
 namespace EventbriteNET.Xml
@@ -34,7 +35,7 @@ namespace EventbriteNET.Xml
 
         public long TryGetElementLongValue(string elementName, XmlDocument doc)
         {
-            return long.Parse(TryGetElementValue(elementName, doc));
+            return long.Parse(TryGetElementValue(elementName, doc), NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands, CultureInfo.InvariantCulture);
         }
 
         public long? TryGetElementNullableLongValue(string elementName, XmlDocument doc)
@@ -44,12 +45,12 @@ namespace EventbriteNET.Xml
             {
                 return null;
             }
-            return long.Parse(value);
+            return long.Parse(value, NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands, CultureInfo.InvariantCulture);
         }
 
         public int TryGetElementIntValue(string elementName, XmlDocument doc)
         {
-            return Int32.Parse(TryGetElementValue(elementName, doc));
+            return Int32.Parse(TryGetElementValue(elementName, doc), CultureInfo.InvariantCulture);
         }
 
         public int? TryGetElementNullableIntValue(string elementName, XmlDocument doc)
@@ -79,7 +80,7 @@ namespace EventbriteNET.Xml
             {
                 return null;
             }
-            return float.Parse(value);
+            return float.Parse(value, NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands, CultureInfo.InvariantCulture);
         }
     }
 }
